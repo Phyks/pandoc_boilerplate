@@ -1,0 +1,3 @@
+[submodule "filters/pandoc-crossref"]
+	path = filters/pandoc-crossref
+	url = https://github.com/lierdakil/pandoc-crossref
