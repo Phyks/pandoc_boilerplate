@@ -23,12 +23,12 @@ fmt_to_option = {
 
 def svg_to_any(key, value, fmt, meta):
     if key == 'Image':
-        alt, [src, title] = value[1], value[-1]
+        attrs, alt, [src, title] = value
         mimet, _ = mimetypes.guess_type(src)
         option = fmt_to_option.get(fmt)
         if mimet == 'image/svg+xml' and option:
             base_name, _ = os.path.splitext(src)
-            eps_name = base_name + "." + "pandoc." + option[1]
+            eps_name = base_name + "." + option[1]
             try:
                 mtime = os.path.getmtime(eps_name)
             except OSError:
@@ -37,7 +37,7 @@ def svg_to_any(key, value, fmt, meta):
                 cmd_line = ['inkscape', option[0], eps_name, src]
                 sys.stderr.write("Running %s\n" % " ".join(cmd_line))
                 subprocess.call(cmd_line, stdout=sys.stderr.fileno())
-            return Image(['', [], []], alt, [eps_name, title])
+            return Image(attrs, alt, [eps_name, title])
 
 if __name__ == "__main__":
     toJSONFilter(svg_to_any)
