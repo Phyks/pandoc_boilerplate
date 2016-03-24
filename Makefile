@@ -1,7 +1,7 @@
 SOURCES = $(wildcard *.md)
 OUT = $(SOURCES:.md=.pdf)
 
-HS_FILTERS_NAMES = nice-frac
+HS_FILTERS_NAMES = nice-frac usual-fun
 PY_FILTERS_NAMES = pandoc-svg.py
 EXT_FILTERS = pandoc-crossref
 
@@ -13,11 +13,11 @@ FILTERS = $(PY_FILTERS) $(HS_FILTERS) $(EXT_FILTERS)
 
 all: $(HS_FILTERS) $(OUT)
 
-$(OUT): $(SOURCES)
-	pandoc --smart -t latex $< $(addprefix --filter=, $(FILTERS)) -o $@
+$(OUT):
+	pandoc -S -t latex $(basename $@).md $(addprefix --filter=, $(FILTERS)) -o $@
 
-$(HS_FILTERS): $(addsuffix .hs, $(HS_FILTERS))
-	ghc --make -O2 $< -o $@	
+$(HS_FILTERS):
+	ghc --make $@.hs -o $@	
 
 clean:
 	rm -f $(OUT)

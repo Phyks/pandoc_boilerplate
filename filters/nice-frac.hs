@@ -9,12 +9,12 @@ space = "[ \\t\\n\\r]*"
 num :: String
 num = "([0-9]+)"
 
--- Substitute latex fractions like '\frac{42}{1}' for (42 / 1)
+-- Replace fractions like "(42 / 1)" by "\frac{42}{1}" 
 fracReg :: Regex
 fracReg = mkRegex $
-  "\\(" ++ space ++ num ++ space ++ "/" ++ space ++ num ++ "\\)"
+  "\\(" ++ space ++ num ++ space ++ "/" ++ space ++ num ++ space ++ "\\)"
 frac :: String -> String
-frac s = subRegex fracReg s "\\frac{\\1}{\\2}"
+frac s = subRegex fracReg s "\\\\frac{\\1}{\\2}"
 
 -- Apply the substitution to all Latex parts on the AST
 niceFrac :: Inline -> Inline
