@@ -1,6 +1,8 @@
 *.pandoc.pdf
+*.pdf
 dist/
 filters/*.hi
 filters/*.o
 filters/usual-fun
 filters/nice-frac
+

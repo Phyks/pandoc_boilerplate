@@ -14,7 +14,7 @@ FILTERS = $(PY_FILTERS) $(HS_FILTERS) $(EXT_FILTERS)
 all: $(HS_FILTERS) $(OUT)
 
 $(OUT):
-	pandoc -S -t latex $(basename $@).md $(addprefix --filter=, $(FILTERS)) -o $@
+	pandoc -S --toc -t latex $(basename $@).md $(addprefix --filter=, $(FILTERS)) -o $@
 
 $(HS_FILTERS):
 	ghc --make $@.hs -o $@	
