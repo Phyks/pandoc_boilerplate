@@ -12,7 +12,6 @@ header-includes:
 cref: True
 chapters: True
 ---
-\tableofcontents
 
 \pagebreak
 
