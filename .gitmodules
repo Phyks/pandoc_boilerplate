@@ -1,0 +1,3 @@
+[submodule "asciimath"]
+	path = asciimath
+	url = https://github.com/Kerl13/AsciiMath.git
