@@ -28,6 +28,6 @@ clean:
 	find . -name "*.pandoc.pdf" -delete
 
 deepclean: clean
-	(cd asciimath; make clean)
+	(cd filters/asciimath; make clean)
 	rm -f $(HS_FILTERS)
 	rm -f filters/*.hi filters/*.o
