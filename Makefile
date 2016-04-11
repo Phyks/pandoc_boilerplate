@@ -11,14 +11,16 @@ FILTERS = $(PY_FILTERS) $(HS_FILTERS) $(EXT_FILTERS)
 
 all: $(HS_FILTERS) asciimath/pandoc-asciimath $(OUT)
 
-$(OUT):
-	pandoc -S --toc -t latex $(basename $@).md $(addprefix --filter=, $(FILTERS)) -o $@
+.SUFFIXES: .md .pdf
+
+%.pdf: %.md
+	pandoc -S --toc -t latex $< $(addprefix --filter=, $(FILTERS)) -o $@
 
 $(HS_FILTERS):
 	ghc --make $@.hs -o $@	
 
 asciimath/pandoc-asciimath:
-	(cd asciimath; make filter)
+	(cd asciimath; make)
 
 clean:
 	rm -f $(OUT)

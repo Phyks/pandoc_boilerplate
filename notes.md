@@ -10,7 +10,7 @@ chapters: True
 
 \pagebreak
 
-# Asciimath
+# AsciiMath example
 
 Soit $n in NN$, alors on a
 $$ sum_(k=1)^n k^3 = ((n(n+1))/2)^2 $$
