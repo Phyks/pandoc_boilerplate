@@ -1,15 +1,16 @@
 SOURCES = $(wildcard *.md)
 OUT = $(SOURCES:.md=.pdf)
+ASCIIMATH=filters/asciimath/pandoc-asciimath
 
 HS_FILTERS_NAMES =
 PY_FILTERS_NAMES = pandoc-svg.py
-EXT_FILTERS = asciimath/pandoc-asciimath
+EXT_FILTERS = $(ASCIIMATH)
 
 HS_FILTERS = $(addprefix filters/, $(HS_FILTERS_NAMES))
 PY_FILTERS = $(addprefix filters/, $(PY_FILTERS_NAMES))
 FILTERS = $(PY_FILTERS) $(HS_FILTERS) $(EXT_FILTERS)
 
-all: $(HS_FILTERS) asciimath/pandoc-asciimath $(OUT)
+all: $(HS_FILTERS) $(ASCIIMATH) $(OUT)
 
 .SUFFIXES: .md .pdf
 
@@ -19,8 +20,8 @@ all: $(HS_FILTERS) asciimath/pandoc-asciimath $(OUT)
 $(HS_FILTERS):
 	ghc --make $@.hs -o $@	
 
-asciimath/pandoc-asciimath:
-	(cd asciimath; make)
+$(ASCIIMATH):
+	(cd filters/asciimath; make)
 
 clean:
 	rm -f $(OUT)
