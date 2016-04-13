@@ -1,13 +1,8 @@
 ---
 # Metadata
-title: %title%
-author: Lucas Verney
+title: Example
+author: Martin Pépin
 date: \today
-# LaTeX headers
-header-includes:
-    - \usepackage{dsfont}
-    - \usepackage{mathtools}
-    - \renewcommand{\arraystretch}{1.5}
 # Pandoc-crossref options
 cref: True
 chapters: True
@@ -15,3 +10,7 @@ chapters: True
 
 \pagebreak
 
+# AsciiMath example
+
+Soit $n in NN$, alors on a
+$$ sum_(k=1)^n k^3 = ((n(n+1))/2)^2 $$

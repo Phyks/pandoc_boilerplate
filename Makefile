@@ -1,23 +1,27 @@
 SOURCES = $(wildcard *.md)
 OUT = $(SOURCES:.md=.pdf)
+ASCIIMATH=filters/asciimath/pandoc-asciimath
 
-HS_FILTERS_NAMES = nice-frac usual-fun
+HS_FILTERS_NAMES =
 PY_FILTERS_NAMES = pandoc-svg.py
-EXT_FILTERS = pandoc-crossref
+EXT_FILTERS = $(ASCIIMATH)
 
 HS_FILTERS = $(addprefix filters/, $(HS_FILTERS_NAMES))
 PY_FILTERS = $(addprefix filters/, $(PY_FILTERS_NAMES))
 FILTERS = $(PY_FILTERS) $(HS_FILTERS) $(EXT_FILTERS)
 
-.SUFFIXES: .hs
+all: $(HS_FILTERS) $(ASCIIMATH) $(OUT)
 
-all: $(HS_FILTERS) $(OUT)
+.SUFFIXES: .md .pdf
 
-$(OUT):
-	pandoc -S --toc -t latex $(basename $@).md $(addprefix --filter=, $(FILTERS)) -o $@
+%.pdf: %.md
+	pandoc -S --toc -t latex $< $(addprefix --filter=, $(FILTERS)) -o $@
 
 $(HS_FILTERS):
 	ghc --make $@.hs -o $@	
+
+$(ASCIIMATH):
+	(cd filters/asciimath; make)
 
 clean:
 	rm -f $(OUT)
@@ -25,5 +29,6 @@ clean:
 	find . -name "*.pandoc.pdf" -delete
 
 deepclean: clean
+	(cd filters/asciimath; make clean)
 	rm -f $(HS_FILTERS)
 	rm -f filters/*.hi filters/*.o
