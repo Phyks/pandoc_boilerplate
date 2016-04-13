@@ -4,7 +4,7 @@ ASCIIMATH=filters/asciimath/pandoc-asciimath
 
 HS_FILTERS_NAMES =
 PY_FILTERS_NAMES = pandoc-svg.py
-EXT_FILTERS = $(ASCIIMATH)
+EXT_FILTERS = pandoc-crossref $(ASCIIMATH)
 
 HS_FILTERS = $(addprefix filters/, $(HS_FILTERS_NAMES))
 PY_FILTERS = $(addprefix filters/, $(PY_FILTERS_NAMES))
@@ -21,7 +21,7 @@ $(HS_FILTERS):
 	ghc --make $@.hs -o $@	
 
 $(ASCIIMATH):
-	(cd filters/asciimath; make)
+	(cd filters/asciimath; make filter-only)
 
 clean:
 	rm -f $(OUT)
