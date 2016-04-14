@@ -12,9 +12,4 @@ include them in the document easily.
 * Include [pandoc-crossref](https://github.com/lierdakil/pandoc-crossref) for
 easy numbering and referencing.
 
-* Include [asciimath](https://github.com/Kerl13/AsciiMath) for easy math typing 
- 
-## TODO
-
-* anything else like this that could help writing more readable LaTeX
-code :)
+* Include [asciimath](https://github.com/Kerl13/AsciiMath) for easy math typing.
