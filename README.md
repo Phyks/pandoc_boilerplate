@@ -18,3 +18,8 @@ easy numbering and referencing.
   bibliography management and citation. See [this part of Pandoc
   README](http://pandoc.org/README.html#citations) as well for more infos on
   this.
+
+
+## Dependencies
+
+* `alex` and `happy`

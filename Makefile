@@ -21,7 +21,7 @@ $(HS_FILTERS):
 	ghc --make $@.hs -o $@
 
 $(ASCIIMATH):
-	(cd filters/asciimath; make filter-only)
+	(cd filters/asciimath; cabal update; make filter-only)
 
 clean:
 	rm -f $(OUT)
