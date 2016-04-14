@@ -4,7 +4,7 @@ ASCIIMATH=filters/asciimath/pandoc-asciimath
 
 HS_FILTERS_NAMES =
 PY_FILTERS_NAMES = pandoc-svg.py
-EXT_FILTERS = pandoc-crossref $(ASCIIMATH)
+EXT_FILTERS = pandoc-crossref pandoc-citeproc $(ASCIIMATH)
 
 HS_FILTERS = $(addprefix filters/, $(HS_FILTERS_NAMES))
 PY_FILTERS = $(addprefix filters/, $(PY_FILTERS_NAMES))
@@ -18,7 +18,7 @@ all: $(HS_FILTERS) $(ASCIIMATH) $(OUT)
 	pandoc -S --toc -t latex $< $(addprefix --filter=, $(FILTERS)) -o $@
 
 $(HS_FILTERS):
-	ghc --make $@.hs -o $@	
+	ghc --make $@.hs -o $@
 
 $(ASCIIMATH):
 	(cd filters/asciimath; make filter-only)
