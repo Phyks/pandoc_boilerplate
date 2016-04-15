@@ -1,5 +1,6 @@
 SOURCES_ = $(wildcard *.md)
 SOURCES = $(filter-out README.md, $(SOURCES_))
+BIB = $(wildcard *.bib)
 OUT = $(SOURCES:.md=.pdf)
 ASCIIMATH=filters/asciimath/pandoc-asciimath
 
@@ -16,7 +17,7 @@ all: $(HS_FILTERS) $(ASCIIMATH) $(OUT)
 
 .SUFFIXES: .md .pdf
 
-%.pdf: %.md
+%.pdf: %.md $(BIB)
 	pandoc -S --toc -t latex $< $(addprefix --filter=, $(FILTERS)) -o $@
 
 $(HS_FILTERS):
