@@ -12,9 +12,14 @@ include them in the document easily.
 * Include [pandoc-crossref](https://github.com/lierdakil/pandoc-crossref) for
 easy numbering and referencing.
 
-* Include [asciimath](https://github.com/Kerl13/AsciiMath) for easy math typing 
- 
-## TODO
+* Include [asciimath](https://github.com/Kerl13/AsciiMath) for easy math typing.
 
-* anything else like this that could help writing more readable LaTeX
-code :)
+* Include [pandoc-citeproc](https://github.com/jgm/pandoc-citeproc) for
+  bibliography management and citation. See [this part of Pandoc
+  README](http://pandoc.org/README.html#citations) as well for more infos on
+  this.
+
+
+## Dependencies
+
+* `alex` and `happy`
