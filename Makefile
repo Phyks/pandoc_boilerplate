@@ -1,4 +1,5 @@
-SOURCES = $(wildcard *.md)
+SOURCES_ = $(wildcard *.md)
+SOURCES = $(filter-out README.md, $(SOURCES_))
 OUT = $(SOURCES:.md=.pdf)
 ASCIIMATH=filters/asciimath/pandoc-asciimath
 
@@ -9,6 +10,7 @@ EXT_FILTERS = pandoc-crossref $(ASCIIMATH)
 HS_FILTERS = $(addprefix filters/, $(HS_FILTERS_NAMES))
 PY_FILTERS = $(addprefix filters/, $(PY_FILTERS_NAMES))
 FILTERS = $(PY_FILTERS) $(HS_FILTERS) $(EXT_FILTERS)
+
 
 all: $(HS_FILTERS) $(ASCIIMATH) $(OUT)
 
@@ -24,9 +26,8 @@ $(ASCIIMATH):
 	(cd filters/asciimath; make filter-only)
 
 clean:
-	rm -f $(OUT)
 	rm -f $(addprefix filters/, $(HS_FILTERS))
-	find . -name "*.pandoc.pdf" -delete
+	rm -f *.pdf
 
 deepclean: clean
 	(cd filters/asciimath; make clean)
