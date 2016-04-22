@@ -1,7 +1,9 @@
 SOURCES_ = $(wildcard *.md)
 SOURCES = $(filter-out README.md, $(SOURCES_))
-BIB = $(wildcard *.bib)
 OUT = $(SOURCES:.md=.pdf)
+IMG_ = $(wildcard *.jpg *.jpeg *.png *.svg *.bmp *.pdf)
+IMG = $(filter-out $(OUT), $(IMG_))
+BIB = $(wildcard *.bib)
 ASCIIMATH=filters/asciimath/pandoc-asciimath
 
 HS_FILTERS_NAMES =
@@ -34,7 +36,7 @@ install-deps:
 
 .SUFFIXES: .md .pdf
 
-%.pdf: %.md $(BIB)
+%.pdf: %.md $(BIB) $(IMG)
 	pandoc -S --toc -t latex $< $(addprefix --filter=, $(FILTERS)) -o $@
 
 $(HS_FILTERS):
